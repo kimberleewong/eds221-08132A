@@ -49,3 +49,33 @@ x
 df <- data.frame(a = c(1, 10, NA))
 df$a[df$a < 5] <- 0
 df$a
+
+## subsetting rows based on conditions
+
+# cars with five gears
+mtcars[mtcars$gear == 5, ]
+
+# cars w/ 5 gears and 4 cylinders
+mtcars[mtcars$gear == 5 & mtcars$cyl == 4, ]
+
+# subset function - can also be used for data graphing
+subset(mtcars, gear == 5 & cyl == 4)
+
+ggplot(data = subset(mtcars, gear == 5 & cyl == 4),
+       aes(x = mpg, y = disp)) +
+         geom_point()
+
+## removing columns from data frame
+# set to null
+df <- data.frame(x = 1:3, y = 3:1, z = letters[1:3])
+df
+df$z <- NULL
+df
+
+# subset to return only columns u want by name
+df[c("x","y")]
+
+# or write out what u dont want
+df[setdiff(names(df), "z")]
+
+
